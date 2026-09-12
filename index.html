@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MINT CLAN | كلان النعناع 🌿</title>
+  <title>COOL MINT | كلان النعناع 🌿</title>
   <style>
-    /* الإعدادات العامة وخلفية الغابة */
+    /* الإعدادات العامة والخلفية */
     * { box-sizing: border-box; }
     body {
       background: #0f2310;
@@ -21,7 +21,7 @@
       justify-content: center;
     }
 
-    /* زوايا شجر خلفية */
+    /* زوايا الغابة */
     .forest-corner {
       position: fixed;
       pointer-events: none;
@@ -47,40 +47,49 @@
       border: 2px solid #52b788;
       border-radius: 25px;
       padding: 20px;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
       backdrop-filter: blur(5px);
       box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
     .clan-title {
-      font-size: 26px;
+      font-size: 32px;
       font-weight: 900;
       margin: 0;
       color: #d8f3dc;
       letter-spacing: 1px;
     }
     .clan-subtitle {
-      font-size: 14px;
+      font-size: 15px;
       color: #95d5b2;
-      margin-top: 5px;
+      margin-top: 4px;
+      font-weight: 600;
     }
 
-    /* زر التعرف على الأعضاء */
-    .explore-btn {
+    /* أزرار الصفحة الرئيسية */
+    .action-btn {
       background: linear-gradient(180deg, #52b788 0%, #2d6a4f 100%);
       color: white;
       border: 2px solid #74c69d;
-      padding: 14px 28px;
+      padding: 13px 20px;
       border-radius: 50px;
-      font-size: 16px;
+      font-size: 15px;
       font-weight: bold;
       cursor: pointer;
       width: 100%;
       box-shadow: 0 6px 20px rgba(45, 106, 79, 0.4);
       transition: all 0.2s ease;
-      margin-bottom: 20px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
     }
-    .explore-btn:hover { transform: translateY(-2px); }
-    .explore-btn:active { transform: translateY(1px); }
+    .action-btn:hover { transform: translateY(-2px); }
+    .action-btn.video-btn {
+      background: linear-gradient(180deg, #d8f3dc 0%, #74c69d 100%);
+      color: #081c15;
+      border-color: #b7e4c7;
+    }
 
     /* قائمة الأعضاء */
     .members-grid {
@@ -94,7 +103,8 @@
     }
     .members-grid.show {
       opacity: 1;
-      max-height: 1000px;
+      max-height: 2000px;
+      margin-top: 10px;
     }
 
     /* كارت العضو بقائمة الاختيار */
@@ -126,7 +136,7 @@
       border: 2px solid #2d6a4f;
     }
     .preview-name {
-      font-size: 18px;
+      font-size: 17px;
       font-weight: bold;
       color: #1b4332;
     }
@@ -136,8 +146,8 @@
       font-weight: 600;
     }
 
-    /* صفحة الملف الشخصي (Modal) */
-    .profile-modal {
+    /* النوافذ المنبثقة (Modals) */
+    .modal-overlay {
       position: fixed;
       top: 0; left: 0; width: 100vw; height: 100vh;
       background: rgba(0,0,0,0.85);
@@ -150,34 +160,36 @@
       transition: opacity 0.3s ease;
       padding: 20px;
     }
-    .profile-modal.active {
+    .modal-overlay.active {
       opacity: 1;
       pointer-events: auto;
     }
 
-    .profile-card {
+    .modal-card {
       background: #f4fbf7;
       color: #1b4332;
       border: 3px solid #52b788;
       border-radius: 30px;
       width: 100%;
       max-width: 380px;
-      padding: 25px;
+      padding: 22px;
       text-align: center;
       position: relative;
       transform: scale(0.85);
       transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+      max-height: 90vh;
+      overflow-y: auto;
     }
-    .profile-modal.active .profile-card {
+    .modal-overlay.active .modal-card {
       transform: scale(1);
     }
 
     /* صورة الملف الشخصي */
     .profile-img-container {
-      width: 110px;
-      height: 110px;
-      margin: 0 auto 12px auto;
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 10px auto;
       position: relative;
     }
     .profile-img {
@@ -214,25 +226,25 @@
     .details-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin: 18px 0;
+      gap: 8px;
+      margin: 15px 0 12px 0;
       text-align: right;
     }
     .detail-box {
       background: #e8f5e9;
       border: 1px solid #b7e4c7;
-      padding: 10px 12px;
-      border-radius: 14px;
+      padding: 8px 10px;
+      border-radius: 12px;
     }
     .detail-label {
-      font-size: 11px;
+      font-size: 10px;
       color: #40916c;
       font-weight: bold;
       display: block;
       margin-bottom: 2px;
     }
     .detail-value {
-      font-size: 14px;
+      font-size: 12px;
       font-weight: 800;
       color: #1b4332;
     }
@@ -241,26 +253,77 @@
     .dislikes-box {
       background: #ffebee;
       border: 1px solid #ffcdd2;
-      border-radius: 16px;
-      padding: 12px 14px;
+      border-radius: 14px;
+      padding: 10px 12px;
       text-align: right;
-      margin-bottom: 18px;
+      margin-bottom: 12px;
     }
     .dislikes-title {
       color: #c62828;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: bold;
-      margin-bottom: 4px;
+      margin-bottom: 3px;
     }
     .dislikes-text {
       color: #b71c1c;
-      font-size: 13px;
+      font-size: 12px;
       margin: 0;
       line-height: 1.4;
       font-weight: 600;
     }
 
-    /* زر العودة */
+    /* مشغل الراب */
+    .rap-player-box {
+      background: linear-gradient(135deg, #1b4332 0%, #081c15 100%);
+      border: 2px solid #52b788;
+      border-radius: 18px;
+      padding: 12px 15px;
+      margin-bottom: 15px;
+      color: white;
+      text-align: right;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      display: none; /* يظهر فقط لصفاء */
+    }
+    .rap-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    .rap-title {
+      font-size: 13px;
+      font-weight: 800;
+      color: #74c69d;
+    }
+    .rap-btn {
+      background: #52b788;
+      color: #081c15;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 25px;
+      font-weight: 900;
+      font-size: 13px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      width: 100%;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
+    .rap-btn:hover { background: #74c69d; }
+
+    /* مشغل الفيديو */
+    .clan-video-player {
+      width: 100%;
+      border-radius: 18px;
+      border: 2px solid #52b788;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      outline: none;
+      margin-top: 10px;
+    }
+
+    /* زر الإغلاق */
     .close-btn {
       background: #1b4332;
       color: white;
@@ -278,98 +341,129 @@
 </head>
 <body>
 
-  <!-- زوايا الغابة -->
   <div class="forest-corner top-left">🌲</div>
   <div class="forest-corner top-right">🌳</div>
 
   <div class="main-container">
-    <!-- هيدر الكلان -->
     <div class="clan-header">
-      <h1 class="clan-title">🍃 𝑪𝑶𝑶𝑳 𝑴𝑰𝑵𝑻 🍵</h1>
-      <div class="clan-subtitle">كلان النعناع الرسمي | Mint Clan Hub</div>
+      <h1 class="clan-title">COOL MINT 🍃</h1>
+      <div class="clan-subtitle">كلان النعناع</div>
     </div>
 
-    <!-- الزر الرئيسي -->
-    <button class="explore-btn" onclick="toggleMembers()">
+    <button class="action-btn video-btn" onclick="openVideoModal()">
+      🎬 نشيد الكلان
+    </button>
+
+    <button class="action-btn" onclick="toggleMembers()">
       🔍 اضغط للتعرف على أعضاء كلان النعناع
     </button>
 
-    <!-- قائمة الأعضاء -->
-    <div class="members-grid" id="membersGrid">
-      
-      <!-- بطاقة صفاء -->
-      <div class="member-card-preview" onclick="openProfile('safaa')">
-        <div class="preview-info">
-          <img src="character.jpg" alt="صفاء" class="preview-avatar">
-          <div style="text-align: right;">
-            <div class="preview-name">صفاء</div>
-            <div class="preview-role">👑 قائدة الكلان (Leader)</div>
-          </div>
-        </div>
-        <span style="color: #2d6a4f; font-weight: bold; font-size: 18px;">←</span>
-      </div>
+    <div class="members-grid" id="membersGrid"></div>
+  </div>
 
+  <div class="modal-overlay" id="videoModal">
+    <div class="modal-card">
+      <h3 style="margin: 0 0 10px 0; color: #081c15; font-weight: 900;">🍃 نشيد كلان النعناع ✨</h3>
+      
+      <video id="clanVideo" class="clan-video-player" controls>
+        <source src="mint-video.mp4" type="video/mp4">
+        متصفحك لا يدعم تشغيل الفيديو.
+      </video>
+
+      <button class="close-btn" style="margin-top: 15px;" onclick="closeVideoModal()">إغلاق الفيديو</button>
     </div>
   </div>
 
-  <!-- نافذة الملف الشخصي الكاملة -->
-  <div class="profile-modal" id="profileModal">
-    <div class="profile-card">
+  <div class="modal-overlay" id="profileModal">
+    <div class="modal-card">
       <div class="profile-img-container">
-        <img src="character.jpg" alt="صفاء" class="profile-img" id="mImg">
+        <img src="" alt="Avatar" class="profile-img" id="mImg">
         <div class="leader-badge" id="mBadge">👑 Leader</div>
       </div>
 
-      <h2 class="profile-name" id="mName">صفاء</h2>
-      <p style="font-size: 12px; color: #40916c; margin: 0 0 10px 0; font-weight: 600;" id="mTitle">مؤسسة كلان النعناع 🌿</p>
+      <h2 class="profile-name" id="mName">اسم العضو</h2>
+      <p style="font-size: 12px; color: #40916c; margin: 0; font-weight: 600;" id="mTitle">الوصف</p>
 
-      <!-- شبكة البيانات -->
       <div class="details-grid">
         <div class="detail-box">
           <span class="detail-label">البلد</span>
-          <span class="detail-value" id="mCountry">🇲🇦 المغرب</span>
+          <span class="detail-value" id="mCountry">-</span>
         </div>
         <div class="detail-box">
           <span class="detail-label">النمط</span>
-          <span class="detail-value" id="mMbti">INFP-T</span>
+          <span class="detail-value" id="mMbti">-</span>
         </div>
         <div class="detail-box">
           <span class="detail-label">الرتبة في الكلان</span>
-          <span class="detail-value" id="mRole">قائدة الكلان</span>
+          <span class="detail-value" id="mRole">-</span>
         </div>
         <div class="detail-box">
-          <span class="detail-label">الحالة</span>
-          <span class="detail-value" style="color: #2d6a4f;">نشطة 🟢</span>
+          <span class="detail-label">الموهبة / الاهتمام</span>
+          <span class="detail-value" style="color: #2d6a4f;" id="mHobby">-</span>
         </div>
       </div>
 
-      <!-- الأشياء التي لا تحبها -->
       <div class="dislikes-box">
-        <div class="dislikes-title">🚫 أشياء تكرهها في الشخصية:</div>
-        <p class="dislikes-text" id="mDislikes">النفاق، التصنع، والتجاهل.</p>
+        <div class="dislikes-title">🚫 أشياء تكرهها:</div>
+        <p class="dislikes-text" id="mDislikes">-</p>
       </div>
 
-      <!-- زر العودة -->
+      <div class="rap-player-box" id="rapPlayerBox">
+        <div class="rap-header">
+          <span class="rap-title">🎤 Minty Bars (راب صفاء) 🔥</span>
+        </div>
+        <button class="rap-btn" id="rapBtn" onclick="toggleRap()">
+          ▶️ اسمعي بارات القائدة
+        </button>
+      </div>
+
       <button class="close-btn" onclick="closeProfile()">إغلاق الملف</button>
     </div>
   </div>
 
   <script>
-    const clickAudio = new Audio('click.mp3');
-
-    function playSound() {
-      clickAudio.currentTime = 0;
-      clickAudio.play().catch(e => console.log(e));
+    // صوت نقرة عصري وناعم مدمج بالذكاء الاصطناعي (بدون ملف خارجي)
+    function playClickSound() {
+      try {
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(600, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(200, audioCtx.currentTime + 0.05);
+        gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.05);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.05);
+      } catch(e) {}
     }
 
-    // إظهار/إخفاء قائمة الأعضاء
+    const rapAudio = new Audio('safaa-rap.mp3'); 
+    let isRapPlaying = false;
+
     function toggleMembers() {
-      playSound();
+      playClickSound();
       const grid = document.getElementById('membersGrid');
       grid.classList.toggle('show');
     }
 
-    // بيانات الأعضاء (يمكنك إضافة أي عضو جديد هنا مستقبلاً)
+    // فتح وإغلاق فيديو الكلان
+    function openVideoModal() {
+      playClickSound();
+      document.getElementById('videoModal').classList.add('active');
+    }
+
+    function closeVideoModal() {
+      playClickSound();
+      const vid = document.getElementById('clanVideo');
+      vid.pause();
+      vid.currentTime = 0;
+      document.getElementById('videoModal').classList.remove('active');
+    }
+
+    // بيانات جميع أعضاء الكلان
     const membersData = {
       safaa: {
         name: 'صفاء',
@@ -378,14 +472,131 @@
         mbti: 'INFP-T',
         role: 'قائدة الكلان (Leader)',
         badge: '👑 Leader',
+        hobby: 'رابر / Leader 🎤',
         dislikes: 'النفاق، التصنع، وقلة الاحترام.',
-        image: 'character.jpg'
+        image: 'character.jpg',
+        hasRap: true
+      },
+      sasha: {
+        name: 'Sasha',
+        title: 'كوليدر كلان النعناع ✨',
+        country: '🇮🇶 العراق',
+        mbti: 'ENFP',
+        role: 'كوليدر (Co-Leader)',
+        badge: '⭐ Co-Leader',
+        hobby: 'الرسم 🎨',
+        dislikes: 'الناس الي تسوي مزح على اقل غلط اسويه، الي يتجاهلون رسايلي او مزاحي، الي يضحكون علي لما ازعل، والي يقطعون العلاقه بسبب شي بسيط.',
+        image: 'Sasha.jpg',
+        hasRap: false
+      },
+      angie: {
+        name: '𝖆𝖓𝖌𝖎𝖊ꨄ',
+        title: 'آنجي - كوليدر الكلان 🎶',
+        country: '🇸🇦 السعودية',
+        mbti: 'ENFP-T',
+        role: 'كوليدر (Co-Leader)',
+        badge: '⭐ Co-Leader',
+        hobby: 'الغناء والعزف على البيانو 🎹🎤',
+        dislikes: 'الكذابين والمنافقين والحقودين.',
+        image: 'https://cdn.discordapp.com/attachments/1546178087350440127/1548349775399878747/8916f396f4507c794dc29131c441d97c.gif?ex=6aa6bc99&is=6aa56b19&hm=8795fe28174b51238561f5157054a6b0ed1b7f603b627669c784df55f0643687',
+        hasRap: false
+      },
+      rival: {
+        name: 'rival',
+        title: 'ريفال 🐎',
+        country: '🇸🇦 السعودية',
+        mbti: 'INTJ',
+        role: 'عضوة بالكلان',
+        badge: '🌿 Member',
+        hobby: 'ركوب الخيل (تحب اللي يفهمها علطول) 🐴',
+        dislikes: 'اللي يحشون علي من وراي.',
+        image: 'rival.jpg',
+        hasRap: false
+      },
+      rita: {
+        name: 'rita',
+        title: 'ريتا (غزل) ❄️',
+        country: '🇸🇦 السعودية',
+        mbti: 'ENTP',
+        role: 'عضوة بالكلان',
+        badge: '🌿 Member',
+        hobby: 'التزلج على الثلج، الرسم، كتابة القصص 📖🎨',
+        dislikes: 'الكذب، التجاهل، ودعم الشذوذ.',
+        image: 'rita.jpg',
+        hasRap: false
+      },
+      cocount: {
+        name: 'cocount',
+        title: 'كوكنت 🥥',
+        country: '🇸🇦 السعودية',
+        mbti: 'ISFP',
+        role: 'عضوة بالكلان',
+        badge: '🌿 Member',
+        hobby: 'الرسم والطبخ 🍳🎨',
+        dislikes: 'النفاق.',
+        image: 'cocount.jpg',
+        hasRap: false
       }
+    };
+
+    // توليد قائمة الأعضاء تلقائياً
+    function renderMembersList() {
+      const grid = document.getElementById('membersGrid');
+      grid.innerHTML = '';
+      for (let id in membersData) {
+        const m = membersData[id];
+        grid.innerHTML += `
+          <div class="member-card-preview" onclick="openProfile('${id}')">
+            <div class="preview-info">
+              <img src="${m.image}" alt="${m.name}" class="preview-avatar" onerror="this.src='character.jpg'">
+              <div style="text-align: right;">
+                <div class="preview-name">${m.name}</div>
+                <div class="preview-role">${m.badge} - ${m.role}</div>
+              </div>
+            </div>
+            <span style="color: #2d6a4f; font-weight: bold; font-size: 18px;">←</span>
+          </div>
+        `;
+      }
+    }
+    renderMembersList();
+
+    // تشغيل وإيقاف الراب (لصفاء)
+    function toggleRap() {
+      const btn = document.getElementById('rapBtn');
+      if (!isRapPlaying) {
+        rapAudio.play().then(() => {
+          isRapPlaying = true;
+          btn.innerHTML = '⏸️ إيقاف المقطع';
+          btn.style.background = '#e63946';
+          btn.style.color = 'white';
+        }).catch(err => {
+          alert('يرجى التأكد من رفع ملف الصوت باسم safaa-rap.mp3');
+        });
+      } else {
+        stopRap();
+      }
+    }
+
+    function stopRap() {
+      rapAudio.pause();
+      rapAudio.currentTime = 0;
+      isRapPlaying = false;
+      const btn = document.getElementById('rapBtn');
+      if (btn) {
+        btn.innerHTML = '▶️ اسمعي بارات القائدة';
+        btn.style.background = '#52b788';
+        btn.style.color = '#081c15';
+      }
+    }
+
+    rapAudio.onended = function() {
+      stopRap();
     };
 
     // فتح الملف الشخصي
     function openProfile(memberId) {
-      playSound();
+      playClickSound();
       const data = membersData[memberId];
       if (!data) return;
 
@@ -394,16 +605,29 @@
       document.getElementById('mCountry').innerText = data.country;
       document.getElementById('mMbti').innerText = data.mbti;
       document.getElementById('mRole').innerText = data.role;
+      document.getElementById('mHobby').innerText = data.hobby;
       document.getElementById('mBadge').innerText = data.badge;
       document.getElementById('mDislikes').innerText = data.dislikes;
-      document.getElementById('mImg').src = data.image;
+      
+      const imgElem = document.getElementById('mImg');
+      imgElem.src = data.image;
+      imgElem.onerror = function() { this.src = 'character.jpg'; };
+
+      // إظهار مشغل الراب لصفاء فقط
+      const rapBox = document.getElementById('rapPlayerBox');
+      if (data.hasRap) {
+        rapBox.style.display = 'block';
+      } else {
+        rapBox.style.display = 'none';
+      }
 
       document.getElementById('profileModal').classList.add('active');
     }
 
     // إغلاق الملف الشخصي
     function closeProfile() {
-      playSound();
+      playClickSound();
+      stopRap();
       document.getElementById('profileModal').classList.remove('active');
     }
   </script>
