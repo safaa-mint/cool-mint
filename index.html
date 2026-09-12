@@ -185,7 +185,7 @@
       transform: scale(1);
     }
 
-    /* البانر العلوي للكارت (ورا البروفايل) */
+    /* البانر العلوي للكارت */
     .profile-banner-container {
       width: 100%;
       height: 120px;
@@ -205,7 +205,7 @@
       padding: 0 22px 22px 22px;
     }
 
-    /* صورة الملف الشخصي المتداخلة مع البانر */
+    /* صورة الملف الشخصي */
     .profile-img-container {
       width: 100px;
       height: 100px;
@@ -294,7 +294,70 @@
       font-weight: 600;
     }
 
-    /* مشغل الراب */
+    /* مشغل أغنية ريتا - الصورة ثابتة مع مؤثرات موسيقية عند الضغط */
+    .rita-player-box {
+      background: transparent;
+      border: none;
+      padding: 10px 0;
+      margin-bottom: 15px;
+      text-align: center;
+      display: none;
+    }
+    .vinyl-container {
+      position: relative;
+      width: 120px;
+      height: 120px;
+      margin: 10px auto;
+      cursor: pointer;
+    }
+    .vinyl-record {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      transition: transform 0.2s ease;
+      filter: drop-shadow(0 4px 10px rgba(0,0,0,0.15));
+    }
+    .vinyl-container:hover .vinyl-record {
+      transform: scale(1.05);
+    }
+
+    /* النغمات الموسيقية المتطايرة عند التشغيل */
+    .music-note {
+      position: absolute;
+      font-size: 22px;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    /* أنيميشن خروج النغمات من الصورة */
+    .vinyl-container.playing .note-1 {
+      animation: floatNote1 1.8s infinite ease-out;
+    }
+    .vinyl-container.playing .note-2 {
+      animation: floatNote2 2.1s infinite ease-out 0.4s;
+    }
+    .vinyl-container.playing .note-3 {
+      animation: floatNote3 1.9s infinite ease-out 0.8s;
+    }
+
+    @keyframes floatNote1 {
+      0% { top: 30%; left: 45%; opacity: 0; transform: scale(0.5) rotate(0deg); }
+      50% { opacity: 1; }
+      100% { top: -35px; left: 15%; opacity: 0; transform: scale(1.3) rotate(-25deg); }
+    }
+    @keyframes floatNote2 {
+      0% { top: 30%; left: 45%; opacity: 0; transform: scale(0.5) rotate(0deg); }
+      50% { opacity: 1; }
+      100% { top: -45px; left: 75%; opacity: 0; transform: scale(1.4) rotate(25deg); }
+    }
+    @keyframes floatNote3 {
+      0% { top: 30%; left: 45%; opacity: 0; transform: scale(0.5) rotate(0deg); }
+      50% { opacity: 1; }
+      100% { top: -50px; left: 45%; opacity: 0; transform: scale(1.5) rotate(-10deg); }
+    }
+
+    /* مشغل الراب الخاص بصفاء */
     .rap-player-box {
       background: linear-gradient(135deg, #1b4332 0%, #081c15 100%);
       border: 2px solid #52b788;
@@ -435,6 +498,15 @@
           <p class="dislikes-text" id="mDislikes">-</p>
         </div>
 
+        <div class="rita-player-box" id="ritaPlayerBox">
+          <div class="vinyl-container" id="vinylContainer" onclick="toggleRitaSong()">
+            <img src="IMG_8175-removebg-preview.png" id="vinylImg" class="vinyl-record" alt="Vinyl Record">
+            <span class="music-note note-1">🎵</span>
+            <span class="music-note note-2">🎶</span>
+            <span class="music-note note-3">🎼</span>
+          </div>
+        </div>
+
         <div class="rap-player-box" id="rapPlayerBox">
           <div class="rap-header">
             <span class="rap-title">🎤 Minty Bars (راب صفاء) 🔥</span>
@@ -450,7 +522,7 @@
   </div>
 
   <script>
-    // صوت نقرة عصري وناعم
+    // صوت نقرة عصري
     function playClickSound() {
       try {
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -468,8 +540,12 @@
       } catch(e) {}
     }
 
+    // ملفات الصوت
     const rapAudio = new Audio('safaa-rap.mp3'); 
     let isRapPlaying = false;
+
+    const ritaAudio = new Audio('rita-song.mp3');
+    let isRitaPlaying = false;
 
     function toggleMembers() {
       playClickSound();
@@ -503,7 +579,8 @@
         dislikes: 'النفاق، التصنع، وقلة الاحترام.',
         image: 'character.jpg',
         banner: '',
-        hasRap: true
+        hasRap: true,
+        hasRitaSong: false
       },
       sasha: {
         name: 'Sasha',
@@ -516,7 +593,8 @@
         dislikes: 'الناس الي تسوي مزح على اقل غلط اسويه، الي يتجاهلون رسايلي او مزاحي، الي يضحكون علي لما ازعل، والي يقطعون العلاقه بسبب شي بسيط.',
         image: 'Sasha.jpg',
         banner: '',
-        hasRap: false
+        hasRap: false,
+        hasRitaSong: false
       },
       angie: {
         name: '𝖆𝖓𝖌𝖎𝖊ꨄ',
@@ -527,9 +605,10 @@
         badge: '⭐ Co-Leader',
         hobby: 'الغناء والعزف على البيانو 🎹🎤',
         dislikes: 'الكذابين والمنافقين والحقودين.',
-        image: 'https://cdn.discordapp.com/attachments/1546178087350440127/1548349775399878747/8916f396f4507c794dc29131c441d97c.gif?ex=6aa6bc99&is=6aa56b19&hm=8795fe28174b51238561f5157054a6b0ed1b7f603b627669c784df55f0643687',
-        banner: '',
-        hasRap: false
+        image: 'prfang.gif',
+        banner: 'bnrang.gif',
+        hasRap: false,
+        hasRitaSong: false
       },
       zohour: {
         name: 'زهور',
@@ -542,7 +621,8 @@
         dislikes: 'اللي تلومني على اشياء ماسويتها، تقرا رسايلي وتتجاهل، تتعمد تغطي على رسالتي عشان محد يرد علي، يغير الموضوع وانا اسولف، يقاطعني، يقول شيء عن نفسه بدون سبب لما اتكلم عن شيء سويته، الكذابين، واللي يحشون فيني وانا ماسويتلهم شيء واذا سويت يزعلون.',
         image: 'zohour.jpg',
         banner: '',
-        hasRap: false
+        hasRap: false,
+        hasRitaSong: false
       },
       rival: {
         name: 'rival',
@@ -555,7 +635,8 @@
         dislikes: 'اللي يحشون علي من وراي.',
         image: 'rival.jpg',
         banner: '',
-        hasRap: false
+        hasRap: false,
+        hasRitaSong: false
       },
       rita: {
         name: 'rita',
@@ -566,9 +647,10 @@
         badge: '🌿 Member',
         hobby: 'التزلج على الثلج، الرسم، كتابة القصص 📖🎨',
         dislikes: 'الكذب، التجاهل، ودعم الشذوذ.',
-        image: 'rita.jpg',          /* صورة بروفايل ريتا */
-        banner: 'banerrita.gif',     /* بانر خلفية البروفايل */
-        hasRap: false
+        image: 'rita.jpg',
+        banner: 'banerrita.gif',
+        hasRap: false,
+        hasRitaSong: true
       },
       cocount: {
         name: 'cocount',
@@ -581,7 +663,8 @@
         dislikes: 'النفاق.',
         image: 'cocount.jpg',
         banner: '',
-        hasRap: false
+        hasRap: false,
+        hasRitaSong: false
       }
     };
 
@@ -607,8 +690,38 @@
     }
     renderMembersList();
 
+    // تشغيل وإيقاف تشغيل أغنية ريتا بالضغط على صورة القرص مباشرة
+    function toggleRitaSong() {
+      playClickSound();
+      const container = document.getElementById('vinylContainer');
+
+      if (!isRitaPlaying) {
+        ritaAudio.play().then(() => {
+          isRitaPlaying = true;
+          container.classList.add('playing');
+        }).catch(err => {
+          // حتى في حال عدم وجود ملف الصوت يظهر تأثير النغمات لتجربة التفاعل
+          isRitaPlaying = true;
+          container.classList.add('playing');
+        });
+      } else {
+        stopRitaSong();
+      }
+    }
+
+    function stopRitaSong() {
+      ritaAudio.pause();
+      ritaAudio.currentTime = 0;
+      isRitaPlaying = false;
+      const container = document.getElementById('vinylContainer');
+      if (container) container.classList.remove('playing');
+    }
+
+    ritaAudio.onended = function() { stopRitaSong(); };
+
     // تشغيل وإيقاف الراب (لصفاء)
     function toggleRap() {
+      playClickSound();
       const btn = document.getElementById('rapBtn');
       if (!isRapPlaying) {
         rapAudio.play().then(() => {
@@ -636,9 +749,7 @@
       }
     }
 
-    rapAudio.onended = function() {
-      stopRap();
-    };
+    rapAudio.onended = function() { stopRap(); };
 
     // فتح الملف الشخصي
     function openProfile(memberId) {
@@ -655,12 +766,12 @@
       document.getElementById('mBadge').innerText = data.badge;
       document.getElementById('mDislikes').innerText = data.dislikes;
       
-      // تحديث صورة البروفايل
+      // صورة البروفايل
       const imgElem = document.getElementById('mImg');
       imgElem.src = data.image;
       imgElem.onerror = function() { this.src = 'character.jpg'; };
 
-      // تحديث البانر العلوي (خلفية البروفايل)
+      // البانر العلوي
       const bannerImg = document.getElementById('mBanner');
       if (data.banner && data.banner.trim() !== '') {
         bannerImg.src = data.banner;
@@ -669,13 +780,13 @@
         bannerImg.style.display = 'none';
       }
 
-      // مشغل الراب
+      // مشغل صفاء
       const rapBox = document.getElementById('rapPlayerBox');
-      if (data.hasRap) {
-        rapBox.style.display = 'block';
-      } else {
-        rapBox.style.display = 'none';
-      }
+      rapBox.style.display = data.hasRap ? 'block' : 'none';
+
+      // مشغل ريتا
+      const ritaBox = document.getElementById('ritaPlayerBox');
+      ritaBox.style.display = data.hasRitaSong ? 'block' : 'none';
 
       document.getElementById('profileModal').classList.add('active');
     }
@@ -684,6 +795,7 @@
     function closeProfile() {
       playClickSound();
       stopRap();
+      stopRitaSong();
       document.getElementById('profileModal').classList.remove('active');
     }
   </script>
