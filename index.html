@@ -294,12 +294,11 @@
       font-weight: 600;
     }
 
-    /* مشغل أغنية ريتا - الصورة ثابتة مع مؤثرات موسيقية عند الضغط */
+    /* مشغل أغنية ريتا - صورة ثابتة واسم الأغنية تحتها مباشرة */
     .rita-player-box {
       background: transparent;
       border: none;
-      padding: 10px 0;
-      margin-bottom: 15px;
+      padding: 5px 0 15px 0;
       text-align: center;
       display: none;
     }
@@ -307,7 +306,7 @@
       position: relative;
       width: 120px;
       height: 120px;
-      margin: 10px auto;
+      margin: 5px auto 4px auto;
       cursor: pointer;
     }
     .vinyl-record {
@@ -319,6 +318,14 @@
     }
     .vinyl-container:hover .vinyl-record {
       transform: scale(1.05);
+    }
+
+    .song-title-text {
+      font-size: 14px;
+      font-weight: 800;
+      color: #1b4332;
+      margin-top: 2px;
+      letter-spacing: 0.5px;
     }
 
     /* النغمات الموسيقية المتطايرة عند التشغيل */
@@ -500,11 +507,12 @@
 
         <div class="rita-player-box" id="ritaPlayerBox">
           <div class="vinyl-container" id="vinylContainer" onclick="toggleRitaSong()">
-            <img src="IMG_8175-removebg-preview.png" id="vinylImg" class="vinyl-record" alt="Vinyl Record">
+            <img src="IMG_8175-removebg-preview1.png" id="vinylImg" class="vinyl-record" alt="Vinyl Record">
             <span class="music-note note-1">🎵</span>
             <span class="music-note note-2">🎶</span>
             <span class="music-note note-3">🎼</span>
           </div>
+          <div class="song-title-text">Shining Star</div>
         </div>
 
         <div class="rap-player-box" id="rapPlayerBox">
@@ -690,7 +698,7 @@
     }
     renderMembersList();
 
-    // تشغيل وإيقاف تشغيل أغنية ريتا بالضغط على صورة القرص مباشرة
+    // تشغيل وإيقاف تشغيل أغنية ريتا بالضغط على الصورة مباشرة
     function toggleRitaSong() {
       playClickSound();
       const container = document.getElementById('vinylContainer');
@@ -700,7 +708,6 @@
           isRitaPlaying = true;
           container.classList.add('playing');
         }).catch(err => {
-          // حتى في حال عدم وجود ملف الصوت يظهر تأثير النغمات لتجربة التفاعل
           isRitaPlaying = true;
           container.classList.add('playing');
         });
