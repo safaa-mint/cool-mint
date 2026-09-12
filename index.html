@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>COOL MINT | كلان النعناع 🌿</title>
   <style>
-    /* الإعدادات العامة والخلفية */
+    /* الإعدادات العامة والخلفية القديمة */
     * { 
       box-sizing: border-box; 
       font-family: 'Tajawal', 'Segoe UI', Tahoma, sans-serif;
@@ -13,9 +13,9 @@
     }
     
     body {
-      background: #08140c;
-      background-image: radial-gradient(circle at 50% 20%, #122e1b 0%, #061009 85%);
-      color: #e8f5e9;
+      background: #1c1512;
+      background-image: linear-gradient(135deg, #2c1d15 0%, #110c09 100%);
+      color: #f5efe6;
       margin: 0;
       padding: 20px;
       min-height: 100vh;
@@ -44,7 +44,7 @@
       text-align: center;
     }
 
-    /* شريط العنوان والأزرار أفقياً */
+    /* شريط العنوان والأزرار */
     .top-bar {
       display: flex;
       flex-wrap: wrap;
@@ -54,13 +54,11 @@
       margin-bottom: 25px;
     }
 
-    /* الهيدر والعنوان */
     .clan-header {
-      background: rgba(18, 46, 27, 0.6);
-      border: 1px solid rgba(82, 183, 136, 0.3);
+      background: rgba(44, 29, 21, 0.8);
+      border: 1px solid rgba(139, 94, 60, 0.4);
       border-radius: 20px;
       padding: 15px 25px;
-      backdrop-filter: blur(10px);
       box-shadow: 0 10px 30px rgba(0,0,0,0.5);
       flex: 1;
       min-width: 280px;
@@ -70,17 +68,15 @@
       font-size: 26px;
       font-weight: 900;
       margin: 0;
-      color: #d8f3dc;
-      letter-spacing: 1px;
+      color: #e3d5ca;
     }
     .clan-subtitle {
       font-size: 13px;
-      color: #74c69d;
+      color: #d4a373;
       margin-top: 2px;
       font-weight: 600;
     }
 
-    /* أزرار التحكم الفوقية */
     .controls-group {
       display: flex;
       gap: 12px;
@@ -90,39 +86,34 @@
     }
 
     .action-btn {
-      background: rgba(45, 106, 79, 0.4);
-      color: #d8f3dc;
-      border: 1px solid rgba(82, 183, 136, 0.4);
+      background: #8b5e3c;
+      color: #ffffff;
+      border: none;
       padding: 12px 22px;
       border-radius: 50px;
       font-size: 14px;
       font-weight: bold;
       cursor: pointer;
-      backdrop-filter: blur(8px);
       transition: all 0.25s ease;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
       white-space: nowrap;
+      box-shadow: 0 4px 15px rgba(139, 94, 60, 0.3);
     }
     .action-btn:hover { 
-      background: rgba(82, 183, 136, 0.25);
-      border-color: #52b788;
+      background: #a47148;
       transform: translateY(-2px); 
-      box-shadow: 0 6px 20px rgba(82, 183, 136, 0.2);
     }
     .action-btn.video-btn {
-      background: linear-gradient(135deg, #52b788 0%, #2d6a4f 100%);
-      color: #ffffff;
-      border: none;
-      box-shadow: 0 4px 15px rgba(82, 183, 136, 0.3);
+      background: #2b4c3f;
     }
     .action-btn.video-btn:hover {
-      box-shadow: 0 6px 22px rgba(82, 183, 136, 0.5);
+      background: #3a6b57;
     }
 
-    /* قائمة الأعضاء شبكة أفقية */
+    /* قائمة الأعضاء */
     .members-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -138,24 +129,21 @@
       margin-top: 15px;
     }
 
-    /* كارت العضو بقائمة الاختيار */
     .member-card-preview {
-      background: rgba(18, 46, 27, 0.5);
-      border: 1px solid rgba(82, 183, 136, 0.25);
+      background: rgba(44, 29, 21, 0.7);
+      border: 1px solid rgba(139, 94, 60, 0.3);
       border-radius: 18px;
       padding: 12px 18px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       cursor: pointer;
-      backdrop-filter: blur(8px);
       transition: all 0.25s ease;
     }
     .member-card-preview:hover {
       transform: translateY(-3px);
-      background: rgba(27, 67, 50, 0.7);
-      border-color: #52b788;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+      background: rgba(60, 40, 29, 0.9);
+      border-color: #d4a373;
     }
     .preview-info {
       display: flex;
@@ -167,7 +155,7 @@
       height: 46px;
       border-radius: 50%;
       object-fit: cover;
-      border: 2px solid #52b788;
+      border: 2px solid #d4a373;
     }
     .preview-name {
       font-size: 15px;
@@ -176,16 +164,16 @@
     }
     .preview-role {
       font-size: 12px;
-      color: #74c69d;
+      color: #d4a373;
       font-weight: 600;
     }
 
-    /* النوافذ المنبثقة (Modals) */
+    /* النافذة المنبثقة التصميم القديم (بوكسات بيضاء وفاتحة) */
     .modal-overlay {
       position: fixed;
       top: 0; left: 0; width: 100vw; height: 100vh;
-      background: rgba(4, 12, 7, 0.85);
-      backdrop-filter: blur(8px);
+      background: rgba(15, 10, 8, 0.85);
+      backdrop-filter: blur(5px);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -200,37 +188,35 @@
       pointer-events: auto;
     }
 
-    /* نافذة الكارت العصرية المبرمجة حديثاً */
     .modal-card {
-      background: rgba(13, 31, 20, 0.95);
-      color: #ffffff;
-      border: 1px solid rgba(82, 183, 136, 0.35);
+      background: #fdfbf7;
+      color: #2c221e;
       border-radius: 24px;
       width: 100%;
       max-width: 680px;
       position: relative;
       transform: scale(0.9);
       transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      box-shadow: 0 25px 60px rgba(0,0,0,0.8), inset 0 1px 0 rgba(255,255,255,0.1);
+      box-shadow: 0 25px 60px rgba(0,0,0,0.6);
       max-height: 90vh;
       overflow-y: auto;
       overflow-x: hidden;
+      text-align: right;
     }
     .modal-overlay.active .modal-card {
       transform: scale(1);
     }
 
-    /* زر إغلاق علوي أنيق */
+    /* زر إغلاق علوي */
     .top-close-icon {
       position: absolute;
       top: 15px;
       left: 15px;
       width: 32px;
       height: 32px;
-      background: rgba(0, 0, 0, 0.4);
-      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: rgba(0, 0, 0, 0.1);
       border-radius: 50%;
-      color: #fff;
+      color: #333;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -240,15 +226,14 @@
       transition: all 0.2s ease;
     }
     .top-close-icon:hover {
-      background: rgba(239, 68, 68, 0.8);
-      border-color: #ef4444;
+      background: #e63946;
+      color: #fff;
     }
 
-    /* البانر العلوي */
     .profile-banner-container {
       width: 100%;
       height: 110px;
-      background: linear-gradient(135deg, #1b4332 0%, #081c15 100%);
+      background: #d4a373;
       position: relative;
     }
     .profile-banner-img {
@@ -258,13 +243,10 @@
       display: block;
     }
 
-    /* محتوى الكارت المطور */
     .modal-body-layout {
       padding: 0 25px 25px 25px;
-      text-align: right;
     }
 
-    /* كرت الهوية السريع بالأعلى */
     .profile-header-summary {
       display: flex;
       align-items: flex-end;
@@ -286,9 +268,9 @@
       height: 100%;
       border-radius: 50%;
       object-fit: cover;
-      border: 3px solid #52b788;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
-      background: #112d1c;
+      border: 3px solid #ffffff;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      background: #fff;
     }
 
     .profile-title-group {
@@ -300,31 +282,31 @@
       font-size: 22px;
       font-weight: 800;
       margin: 0;
-      color: #ffffff;
+      color: #2c221e;
       display: flex;
       align-items: center;
       gap: 10px;
     }
 
     .leader-badge {
-      background: rgba(82, 183, 136, 0.2);
-      color: #74c69d;
+      background: #faedcd;
+      color: #8b5e3c;
       font-size: 11px;
       font-weight: 700;
       padding: 3px 10px;
       border-radius: 20px;
-      border: 1px solid rgba(82, 183, 136, 0.4);
+      border: 1px solid #d4a373;
       display: inline-block;
     }
 
     .profile-subtitle-text {
       font-size: 13px;
-      color: #95d5b2;
+      color: #7f5539;
       margin-top: 3px;
-      font-weight: 500;
+      font-weight: 600;
     }
 
-    /* شبكة تفاصيل الملف Glassmorphic */
+    /* شبكة التفاصيل القديمة (بوكسات نعناعية/بيضاء) */
     .details-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -336,58 +318,49 @@
     }
 
     .detail-box {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      padding: 10px 14px;
+      background: #f4f1de;
+      border: 1px solid #e3d5ca;
+      padding: 12px 14px;
       border-radius: 14px;
-      transition: all 0.2s ease;
-    }
-    .detail-box:hover {
-      background: rgba(255, 255, 255, 0.07);
-      border-color: rgba(82, 183, 136, 0.3);
     }
     .detail-label {
       font-size: 11px;
-      color: #74c69d;
-      font-weight: 600;
+      color: #bc6c25;
+      font-weight: bold;
       display: block;
       margin-bottom: 3px;
     }
     .detail-value {
       font-size: 13px;
-      font-weight: 700;
-      color: #ffffff;
+      font-weight: bold;
+      color: #2c221e;
     }
 
-    /* قسم الأشياء التي لا تحبها */
+    /* قسم أشياء تكرهها (اللون الوردي القديم) */
     .dislikes-box {
-      background: rgba(239, 68, 68, 0.08);
-      border: 1px solid rgba(239, 68, 68, 0.25);
+      background: #ffe6eb;
+      border: 1px solid #ffccd5;
       border-radius: 14px;
       padding: 12px 15px;
       margin-bottom: 18px;
     }
     .dislikes-title {
-      color: #fca5a5;
+      color: #d90429;
       font-size: 12px;
-      font-weight: 700;
+      font-weight: bold;
       margin-bottom: 4px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
     }
     .dislikes-text {
-      color: #f87171;
+      color: #9b2226;
       font-size: 13px;
       margin: 0;
       line-height: 1.5;
-      font-weight: 500;
     }
 
-    /* مشغل الأسطوانة (الفينيل) المشترك */
+    /* مشغلات الأغاني والراب */
     .rita-player-box {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: #e9edc9;
+      border: 1px solid #ccd5ae;
       border-radius: 16px;
       padding: 10px;
       text-align: center;
@@ -396,8 +369,8 @@
     }
     .vinyl-container {
       position: relative;
-      width: 90px;
-      height: 90px;
+      width: 80px;
+      height: 80px;
       margin: 5px auto;
       cursor: pointer;
     }
@@ -409,15 +382,14 @@
     }
     .song-title-text {
       font-size: 12px;
-      font-weight: 700;
-      color: #74c69d;
+      font-weight: bold;
+      color: #386641;
       margin-top: 4px;
     }
 
-    /* مشغل راب صفاء */
     .rap-player-box {
-      background: linear-gradient(135deg, rgba(82, 183, 136, 0.2) 0%, rgba(27, 67, 50, 0.4) 100%);
-      border: 1px solid #52b788;
+      background: #d8f3dc;
+      border: 1px solid #b7e4c7;
       border-radius: 16px;
       padding: 12px;
       text-align: center;
@@ -426,50 +398,48 @@
     }
     .rap-title {
       font-size: 12px;
-      font-weight: 800;
-      color: #d8f3dc;
+      font-weight: bold;
+      color: #1b4332;
       margin-bottom: 6px;
       display: block;
     }
     .rap-btn {
-      background: #52b788;
-      color: #081c15;
+      background: #2d6a4f;
+      color: #ffffff;
       border: none;
       padding: 8px 16px;
       border-radius: 20px;
-      font-weight: 800;
+      font-weight: bold;
       font-size: 12px;
       cursor: pointer;
       width: 100%;
       transition: all 0.2s ease;
     }
-    .rap-btn:hover { background: #74c69d; }
+    .rap-btn:hover { background: #40916c; }
 
-    /* مشغل الفيديو */
     .clan-video-player {
       width: 100%;
       border-radius: 16px;
-      border: 1px solid #52b788;
+      border: 1px solid #d4a373;
       outline: none;
       margin-top: 10px;
     }
 
-    /* زر الإغلاق السفلي */
     .close-btn {
-      background: rgba(255, 255, 255, 0.08);
-      color: #ffffff;
-      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: #e3d5ca;
+      color: #2c221e;
+      border: none;
       padding: 11px 20px;
       border-radius: 14px;
-      font-weight: 700;
+      font-weight: bold;
       font-size: 13px;
       cursor: pointer;
       width: 100%;
       transition: all 0.2s;
     }
     .close-btn:hover { 
-      background: rgba(255, 255, 255, 0.15);
-      border-color: rgba(255, 255, 255, 0.3);
+      background: #d4a373;
+      color: #fff;
     }
   </style>
 </head>
@@ -480,7 +450,6 @@
   <div class="forest-corner top-right">🌳</div>
 
   <div class="main-container">
-    <!-- الشريط العلوي الأفقي -->
     <div class="top-bar">
       <div class="clan-header">
         <h1 class="clan-title">COOL MINT 🍃</h1>
@@ -497,15 +466,14 @@
       </div>
     </div>
 
-    <!-- شبكة الأعضاء العريضة -->
     <div class="members-grid" id="membersGrid"></div>
   </div>
 
-  <!-- نافذة فيديو النعناع -->
+  <!-- نافذة فيديو الكلان -->
   <div class="modal-overlay" id="videoModal" onclick="if(event.target===this) closeVideoModal()">
     <div class="modal-card" style="padding: 22px; max-width: 580px;">
       <div class="top-close-icon" onclick="closeVideoModal()">✕</div>
-      <h3 style="margin: 0 0 10px 0; color: #74c69d; font-weight: 900;">🍃 نشيد كلان النعناع ✨</h3>
+      <h3 style="margin: 0 0 10px 0; color: #2c221e; font-weight: 900;">🍃 نشيد كلان النعناع ✨</h3>
       
       <video id="clanVideo" class="clan-video-player" controls>
         <source src="YouCut_20260906_141036526 (1).mp4" type="video/mp4">
@@ -516,7 +484,7 @@
     </div>
   </div>
 
-  <!-- نافذة الملف الشخصي العريضة المطوّرة -->
+  <!-- نافذة الملف الشخصي -->
   <div class="modal-overlay" id="profileModal" onclick="if(event.target===this) closeProfile()">
     <div class="modal-card">
       <div class="top-close-icon" onclick="closeProfile()">✕</div>
@@ -526,7 +494,6 @@
       </div>
 
       <div class="modal-body-layout">
-        <!-- كرت ملخص البروفايل العلوي -->
         <div class="profile-header-summary">
           <div class="profile-img-container">
             <img src="" alt="Avatar" class="profile-img" id="mImg">
@@ -549,11 +516,11 @@
         </div>
 
         <!-- مشغل أغنية آنجي (Toxic till the end) -->
-        <div class="rita-player-box" id="angiePlayerBox">
+        <div class="rita-player-box" id="angiePlayerBox" style="background: #fad2e1; border-color: #f8bbd0;">
           <div class="vinyl-container" onclick="toggleAngieSong()">
             <img src="ostowana.jpg" class="vinyl-record" alt="Vinyl Record">
           </div>
-          <div class="song-title-text">🎵 Toxic till the end</div>
+          <div class="song-title-text" style="color: #9d0208;">🎵 Toxic till the end</div>
         </div>
 
         <!-- مشغل راب صفاء -->
@@ -564,7 +531,7 @@
           </button>
         </div>
 
-        <!-- شبكة التفاصيل المعنونة -->
+        <!-- شبكة التفاصيل -->
         <div class="details-grid">
           <div class="detail-box">
             <span class="detail-label">البلد</span>
@@ -580,7 +547,7 @@
           </div>
           <div class="detail-box">
             <span class="detail-label">الموهبة / الاهتمام</span>
-            <span class="detail-value" style="color: #74c69d;" id="mHobby">-</span>
+            <span class="detail-value" style="color: #bc6c25;" id="mHobby">-</span>
           </div>
         </div>
 
@@ -596,23 +563,6 @@
   </div>
 
   <script>
-    function playClickSound() {
-      try {
-        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        const osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(600, audioCtx.currentTime);
-        osc.frequency.exponentialRampToValueAtTime(200, audioCtx.currentTime + 0.05);
-        gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.05);
-        osc.connect(gain);
-        gain.connect(audioCtx.destination);
-        osc.start();
-        osc.stop(audioCtx.currentTime + 0.05);
-      } catch(e) {}
-    }
-
     const rapAudio = new Audio('safaa-rap.mp3'); 
     let isRapPlaying = false;
 
@@ -623,18 +573,15 @@
     let isAngiePlaying = false;
 
     function toggleMembers() {
-      playClickSound();
       const grid = document.getElementById('membersGrid');
       grid.classList.toggle('show');
     }
 
     function openVideoModal() {
-      playClickSound();
       document.getElementById('videoModal').classList.add('active');
     }
 
     function closeVideoModal() {
-      playClickSound();
       const vid = document.getElementById('clanVideo');
       vid.pause();
       vid.currentTime = 0;
@@ -763,7 +710,7 @@
                 <div class="preview-role">${m.badge}</div>
               </div>
             </div>
-            <span style="color: #52b788; font-weight: bold; font-size: 16px;">←</span>
+            <span style="color: #d4a373; font-weight: bold; font-size: 16px;">←</span>
           </div>
         `;
       }
@@ -771,54 +718,42 @@
     renderMembersList();
 
     function toggleRitaSong() {
-      playClickSound();
       if (!isRitaPlaying) {
         stopAngieSong();
-        ritaAudio.play().then(() => {
-          isRitaPlaying = true;
-        }).catch(() => { isRitaPlaying = true; });
+        ritaAudio.play().then(() => { isRitaPlaying = true; }).catch(() => { isRitaPlaying = true; });
       } else {
         stopRitaSong();
       }
     }
-
     function stopRitaSong() {
       ritaAudio.pause();
       ritaAudio.currentTime = 0;
       isRitaPlaying = false;
     }
-
     ritaAudio.onended = function() { stopRitaSong(); };
 
     function toggleAngieSong() {
-      playClickSound();
       if (!isAngiePlaying) {
         stopRitaSong();
-        angieAudio.play().then(() => {
-          isAngiePlaying = true;
-        }).catch(() => { isAngiePlaying = true; });
+        angieAudio.play().then(() => { isAngiePlaying = true; }).catch(() => { isAngiePlaying = true; });
       } else {
         stopAngieSong();
       }
     }
-
     function stopAngieSong() {
       angieAudio.pause();
       angieAudio.currentTime = 0;
       isAngiePlaying = false;
     }
-
     angieAudio.onended = function() { stopAngieSong(); };
 
     function toggleRap() {
-      playClickSound();
       const btn = document.getElementById('rapBtn');
       if (!isRapPlaying) {
         rapAudio.play().then(() => {
           isRapPlaying = true;
           btn.innerHTML = '⏸️ إيقاف المقطع';
           btn.style.background = '#e63946';
-          btn.style.color = 'white';
         }).catch(err => {
           alert('يرجى التأكد من رفع ملف الصوت باسم safaa-rap.mp3');
         });
@@ -826,7 +761,6 @@
         stopRap();
       }
     }
-
     function stopRap() {
       rapAudio.pause();
       rapAudio.currentTime = 0;
@@ -834,15 +768,12 @@
       const btn = document.getElementById('rapBtn');
       if (btn) {
         btn.innerHTML = '▶️ اسمعي بارات القائدة';
-        btn.style.background = '#52b788';
-        btn.style.color = '#081c15';
+        btn.style.background = '#2d6a4f';
       }
     }
-
     rapAudio.onended = function() { stopRap(); };
 
     function openProfile(memberId) {
-      playClickSound();
       const data = membersData[memberId];
       if (!data) return;
 
@@ -867,7 +798,6 @@
         bannerImg.style.display = 'none';
       }
 
-      // إظهار وإخفاء المشغلات حسب العضو
       document.getElementById('rapPlayerBox').style.display = data.hasRap ? 'block' : 'none';
       document.getElementById('ritaPlayerBox').style.display = data.hasRitaSong ? 'block' : 'none';
       document.getElementById('angiePlayerBox').style.display = data.hasAngieSong ? 'block' : 'none';
@@ -876,7 +806,6 @@
     }
 
     function closeProfile() {
-      playClickSound();
       stopRap();
       stopRitaSong();
       stopAngieSong();
