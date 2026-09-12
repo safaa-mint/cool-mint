@@ -294,7 +294,7 @@
       font-weight: 600;
     }
 
-    /* مشغل أغنية ريتا - صورة ثابتة واسم الأغنية تحتها مباشرة */
+    /* مشغل أغنية ريتا */
     .rita-player-box {
       background: transparent;
       border: none;
@@ -337,7 +337,6 @@
       z-index: 10;
     }
 
-    /* أنيميشن خروج النغمات من الصورة */
     .vinyl-container.playing .note-1 {
       animation: floatNote1 1.8s infinite ease-out;
     }
@@ -507,7 +506,7 @@
 
         <div class="rita-player-box" id="ritaPlayerBox">
           <div class="vinyl-container" id="vinylContainer" onclick="toggleRitaSong()">
-            <img src="IMG_8175-removebg-preview1.png" id="vinylImg" class="vinyl-record" alt="Vinyl Record">
+            <img src="IMG_8175-removebg-preview.png" id="vinylImg" class="vinyl-record" alt="Vinyl Record">
             <span class="music-note note-1">🎵</span>
             <span class="music-note note-2">🎶</span>
             <span class="music-note note-3">🎼</span>
@@ -530,7 +529,6 @@
   </div>
 
   <script>
-    // صوت نقرة عصري
     function playClickSound() {
       try {
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -548,7 +546,6 @@
       } catch(e) {}
     }
 
-    // ملفات الصوت
     const rapAudio = new Audio('safaa-rap.mp3'); 
     let isRapPlaying = false;
 
@@ -574,7 +571,6 @@
       document.getElementById('videoModal').classList.remove('active');
     }
 
-    // بيانات جميع أعضاء الكلان
     const membersData = {
       safaa: {
         name: 'صفاء',
@@ -676,7 +672,6 @@
       }
     };
 
-    // توليد قائمة الأعضاء
     function renderMembersList() {
       const grid = document.getElementById('membersGrid');
       grid.innerHTML = '';
@@ -698,7 +693,6 @@
     }
     renderMembersList();
 
-    // تشغيل وإيقاف تشغيل أغنية ريتا بالضغط على الصورة مباشرة
     function toggleRitaSong() {
       playClickSound();
       const container = document.getElementById('vinylContainer');
@@ -726,7 +720,6 @@
 
     ritaAudio.onended = function() { stopRitaSong(); };
 
-    // تشغيل وإيقاف الراب (لصفاء)
     function toggleRap() {
       playClickSound();
       const btn = document.getElementById('rapBtn');
@@ -758,7 +751,6 @@
 
     rapAudio.onended = function() { stopRap(); };
 
-    // فتح الملف الشخصي
     function openProfile(memberId) {
       playClickSound();
       const data = membersData[memberId];
@@ -773,12 +765,10 @@
       document.getElementById('mBadge').innerText = data.badge;
       document.getElementById('mDislikes').innerText = data.dislikes;
       
-      // صورة البروفايل
       const imgElem = document.getElementById('mImg');
       imgElem.src = data.image;
       imgElem.onerror = function() { this.src = 'character.jpg'; };
 
-      // البانر العلوي
       const bannerImg = document.getElementById('mBanner');
       if (data.banner && data.banner.trim() !== '') {
         bannerImg.src = data.banner;
@@ -787,18 +777,15 @@
         bannerImg.style.display = 'none';
       }
 
-      // مشغل صفاء
       const rapBox = document.getElementById('rapPlayerBox');
       rapBox.style.display = data.hasRap ? 'block' : 'none';
 
-      // مشغل ريتا
       const ritaBox = document.getElementById('ritaPlayerBox');
       ritaBox.style.display = data.hasRitaSong ? 'block' : 'none';
 
       document.getElementById('profileModal').classList.add('active');
     }
 
-    // إغلاق الملف الشخصي
     function closeProfile() {
       playClickSound();
       stopRap();
