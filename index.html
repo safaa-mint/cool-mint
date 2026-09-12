@@ -359,7 +359,7 @@
       color: #ffffff;
     }
 
-    /* قسم الأشياء التي لا تحبها مدمج وأنيق */
+    /* قسم الأشياء التي لا تحبها */
     .dislikes-box {
       background: rgba(239, 68, 68, 0.08);
       border: 1px solid rgba(239, 68, 68, 0.25);
@@ -384,7 +384,7 @@
       font-weight: 500;
     }
 
-    /* مشغل أغنية ريتا */
+    /* مشغل الأسطوانة (الفينيل) المشترك */
     .rita-player-box {
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid rgba(255, 255, 255, 0.08);
@@ -414,7 +414,7 @@
       margin-top: 4px;
     }
 
-    /* مشغل الراب الخاص بصفاء */
+    /* مشغل راب صفاء */
     .rap-player-box {
       background: linear-gradient(135deg, rgba(82, 183, 136, 0.2) 0%, rgba(27, 67, 50, 0.4) 100%);
       border: 1px solid #52b788;
@@ -542,10 +542,18 @@
 
         <!-- مشغل أغنية ريتا -->
         <div class="rita-player-box" id="ritaPlayerBox">
-          <div class="vinyl-container" id="vinylContainer" onclick="toggleRitaSong()">
-            <img src="ostowana.jpg" id="vinylImg" class="vinyl-record" alt="Vinyl Record">
+          <div class="vinyl-container" onclick="toggleRitaSong()">
+            <img src="ostowana.jpg" class="vinyl-record" alt="Vinyl Record">
           </div>
-          <div class="song-title-text" id="ritaSongTitle">🎵 Shining Star</div>
+          <div class="song-title-text">🎵 Shining Star</div>
+        </div>
+
+        <!-- مشغل أغنية آنجي (Toxic till the end) -->
+        <div class="rita-player-box" id="angiePlayerBox">
+          <div class="vinyl-container" onclick="toggleAngieSong()">
+            <img src="ostowana.jpg" class="vinyl-record" alt="Vinyl Record">
+          </div>
+          <div class="song-title-text">🎵 Toxic till the end</div>
         </div>
 
         <!-- مشغل راب صفاء -->
@@ -611,6 +619,9 @@
     const ritaAudio = new Audio('rita-song.mp3');
     let isRitaPlaying = false;
 
+    const angieAudio = new Audio('angiesound.mp3');
+    let isAngiePlaying = false;
+
     function toggleMembers() {
       playClickSound();
       const grid = document.getElementById('membersGrid');
@@ -643,7 +654,8 @@
         image: 'character.jpg',
         banner: '',
         hasRap: true,
-        hasRitaSong: false
+        hasRitaSong: false,
+        hasAngieSong: false
       },
       sasha: {
         name: 'Sasha',
@@ -657,7 +669,8 @@
         image: 'Sasha.jpg',
         banner: '',
         hasRap: false,
-        hasRitaSong: false
+        hasRitaSong: false,
+        hasAngieSong: false
       },
       angie: {
         name: '𝖆𝖓𝖌𝖎𝖊',
@@ -671,7 +684,8 @@
         image: 'prfang.gif',
         banner: 'bnrang.gif',
         hasRap: false,
-        hasRitaSong: false
+        hasRitaSong: false,
+        hasAngieSong: true
       },
       zohour: {
         name: 'زهور',
@@ -685,7 +699,8 @@
         image: 'zohour.jpg',
         banner: '',
         hasRap: false,
-        hasRitaSong: false
+        hasRitaSong: false,
+        hasAngieSong: false
       },
       rival: {
         name: 'rival',
@@ -699,7 +714,8 @@
         image: 'rival.jpg',
         banner: '',
         hasRap: false,
-        hasRitaSong: false
+        hasRitaSong: false,
+        hasAngieSong: false
       },
       rita: {
         name: 'rita',
@@ -713,7 +729,8 @@
         image: 'rita.jpg',
         banner: 'banerrita.gif',
         hasRap: false,
-        hasRitaSong: true
+        hasRitaSong: true,
+        hasAngieSong: false
       },
       cocount: {
         name: 'cocount',
@@ -727,7 +744,8 @@
         image: 'cocount.jpg',
         banner: '',
         hasRap: false,
-        hasRitaSong: false
+        hasRitaSong: false,
+        hasAngieSong: false
       }
     };
 
@@ -755,6 +773,7 @@
     function toggleRitaSong() {
       playClickSound();
       if (!isRitaPlaying) {
+        stopAngieSong();
         ritaAudio.play().then(() => {
           isRitaPlaying = true;
         }).catch(() => { isRitaPlaying = true; });
@@ -770,6 +789,26 @@
     }
 
     ritaAudio.onended = function() { stopRitaSong(); };
+
+    function toggleAngieSong() {
+      playClickSound();
+      if (!isAngiePlaying) {
+        stopRitaSong();
+        angieAudio.play().then(() => {
+          isAngiePlaying = true;
+        }).catch(() => { isAngiePlaying = true; });
+      } else {
+        stopAngieSong();
+      }
+    }
+
+    function stopAngieSong() {
+      angieAudio.pause();
+      angieAudio.currentTime = 0;
+      isAngiePlaying = false;
+    }
+
+    angieAudio.onended = function() { stopAngieSong(); };
 
     function toggleRap() {
       playClickSound();
@@ -828,11 +867,10 @@
         bannerImg.style.display = 'none';
       }
 
-      const rapBox = document.getElementById('rapPlayerBox');
-      rapBox.style.display = data.hasRap ? 'block' : 'none';
-
-      const ritaBox = document.getElementById('ritaPlayerBox');
-      ritaBox.style.display = data.hasRitaSong ? 'block' : 'none';
+      // إظهار وإخفاء المشغلات حسب العضو
+      document.getElementById('rapPlayerBox').style.display = data.hasRap ? 'block' : 'none';
+      document.getElementById('ritaPlayerBox').style.display = data.hasRitaSong ? 'block' : 'none';
+      document.getElementById('angiePlayerBox').style.display = data.hasAngieSong ? 'block' : 'none';
 
       document.getElementById('profileModal').classList.add('active');
     }
@@ -841,6 +879,7 @@
       playClickSound();
       stopRap();
       stopRitaSong();
+      stopAngieSong();
       document.getElementById('profileModal').classList.remove('active');
     }
   </script>
