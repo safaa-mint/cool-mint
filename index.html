@@ -33,22 +33,12 @@
     .top-left { top: -20px; left: -10px; }
     .top-right { top: -20px; right: -10px; }
 
-    /* الحاوية الرئيسية - عريضة للتصميم الأفقّي */
+    /* الحاوية الرئيسية */
     .main-container {
       width: 100%;
-      max-width: 960px; /* زيادة العرض للوضع الأفقي */
+      max-width: 420px;
       z-index: 10;
       text-align: center;
-    }
-
-    /* شريط العنوان والأزرار أفقياً */
-    .top-bar {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 15px;
-      margin-bottom: 20px;
     }
 
     /* الهيدر والعنوان */
@@ -56,52 +46,43 @@
       background: rgba(27, 67, 50, 0.85);
       border: 2px solid #52b788;
       border-radius: 25px;
-      padding: 15px 30px;
+      padding: 20px;
+      margin-bottom: 15px;
       backdrop-filter: blur(5px);
       box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-      flex: 1;
-      min-width: 280px;
-      text-align: right;
     }
     .clan-title {
-      font-size: 28px;
+      font-size: 32px;
       font-weight: 900;
       margin: 0;
       color: #d8f3dc;
       letter-spacing: 1px;
     }
     .clan-subtitle {
-      font-size: 14px;
+      font-size: 15px;
       color: #95d5b2;
-      margin-top: 2px;
+      margin-top: 4px;
       font-weight: 600;
     }
 
-    /* أزرار التحكم الفوقية */
-    .controls-group {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      flex: 1;
-      justify-content: flex-end;
-    }
-
+    /* أزرار الصفحة الرئيسية */
     .action-btn {
       background: linear-gradient(180deg, #52b788 0%, #2d6a4f 100%);
       color: white;
       border: 2px solid #74c69d;
-      padding: 12px 20px;
+      padding: 13px 20px;
       border-radius: 50px;
-      font-size: 14px;
+      font-size: 15px;
       font-weight: bold;
       cursor: pointer;
+      width: 100%;
       box-shadow: 0 6px 20px rgba(45, 106, 79, 0.4);
       transition: all 0.2s ease;
+      margin-bottom: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
-      white-space: nowrap;
     }
     .action-btn:hover { transform: translateY(-2px); }
     .action-btn.video-btn {
@@ -110,11 +91,11 @@
       border-color: #b7e4c7;
     }
 
-    /* قائمة الأعضاء شبكة أفقية (Grid Layout) */
+    /* قائمة الأعضاء */
     .members-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* توزيع أفقّي متجاوب */
-      gap: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
       opacity: 0;
       max-height: 0;
       overflow: hidden;
@@ -122,8 +103,8 @@
     }
     .members-grid.show {
       opacity: 1;
-      max-height: 2000px;
-      margin-top: 15px;
+      max-height: 3000px;
+      margin-top: 10px;
     }
 
     /* كارت العضو بقائمة الاختيار */
@@ -139,7 +120,7 @@
       transition: transform 0.2s, box-shadow 0.2s;
     }
     .member-card-preview:hover {
-      transform: scale(1.03);
+      transform: scale(1.02);
       box-shadow: 0 8px 20px rgba(0,0,0,0.3);
     }
     .preview-info {
@@ -155,7 +136,7 @@
       border: 2px solid #2d6a4f;
     }
     .preview-name {
-      font-size: 16px;
+      font-size: 17px;
       font-weight: bold;
       color: #1b4332;
     }
@@ -184,14 +165,14 @@
       pointer-events: auto;
     }
 
-    /* نافذة الكارت أفقية وعريضة */
     .modal-card {
       background: #f4fbf7;
       color: #1b4332;
       border: 3px solid #52b788;
       border-radius: 30px;
       width: 100%;
-      max-width: 760px; /* نافذة عريضة أفقيّة */
+      max-width: 380px;
+      text-align: center;
       position: relative;
       transform: scale(0.85);
       transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -204,10 +185,10 @@
       transform: scale(1);
     }
 
-    /* البانر العلوي */
+    /* البانر العلوي للكارت */
     .profile-banner-container {
       width: 100%;
-      height: 110px;
+      height: 120px;
       background: linear-gradient(135deg, #1b4332 0%, #2d6a4f 100%);
       position: relative;
       overflow: hidden;
@@ -219,30 +200,16 @@
       display: block;
     }
 
-    /* محتوى الكارت الموزّع أفقياً (عمودين) */
-    .modal-body-layout {
-      display: grid;
-      grid-template-columns: 240px 1fr; /* الجانب الأيمن للصورة والأغاني، والأيسر للتفاصيل */
-      gap: 20px;
+    /* محتوى الكارت أسفل البانر */
+    .modal-body-content {
       padding: 0 22px 22px 22px;
-      text-align: right;
-    }
-    @media (max-width: 650px) {
-      .modal-body-layout { grid-template-columns: 1fr; } /* يتأقلم مع الشاشات الصغرى */
     }
 
-    /* العمود الأيمن من البروفايل */
-    .profile-left-col {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-
+    /* صورة الملف الشخصي */
     .profile-img-container {
-      width: 95px;
-      height: 95px;
-      margin: -45px auto 10px auto;
+      width: 100px;
+      height: 100px;
+      margin: -50px auto 10px auto;
       position: relative;
       z-index: 2;
     }
@@ -262,27 +229,19 @@
       transform: translateX(-50%);
       background: #2d6a4f;
       color: #d8f3dc;
-      font-size: 10px;
+      font-size: 11px;
       font-weight: bold;
-      padding: 3px 8px;
+      padding: 3px 10px;
       border-radius: 12px;
       border: 1px solid #74c69d;
       white-space: nowrap;
     }
 
     .profile-name {
-      font-size: 22px;
+      font-size: 24px;
       font-weight: 900;
       margin: 5px 0 2px 0;
       color: #081c15;
-    }
-
-    /* العمود الأيسر للتفاصيل */
-    .profile-right-col {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding-top: 15px;
     }
 
     /* شبكة تفاصيل الملف */
@@ -290,7 +249,8 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 8px;
-      margin-bottom: 12px;
+      margin: 15px 0 12px 0;
+      text-align: right;
     }
     .detail-box {
       background: #e8f5e9;
@@ -317,6 +277,7 @@
       border: 1px solid #ffcdd2;
       border-radius: 14px;
       padding: 10px 12px;
+      text-align: right;
       margin-bottom: 12px;
     }
     .dislikes-title {
@@ -336,16 +297,16 @@
     /* مشغل أغنية ريتا */
     .rita-player-box {
       background: transparent;
-      padding: 5px 0;
+      border: none;
+      padding: 5px 0 15px 0;
       text-align: center;
       display: none;
-      width: 100%;
     }
     .vinyl-container {
       position: relative;
-      width: 110px;
-      height: 110px;
-      margin: 5px auto;
+      width: 120px;
+      height: 120px;
+      margin: 5px auto 4px auto;
       cursor: pointer;
     }
     .vinyl-record {
@@ -360,69 +321,85 @@
     }
 
     .song-title-text {
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 800;
       color: #1b4332;
       margin-top: 2px;
+      letter-spacing: 0.5px;
     }
 
-    /* النغمات الموسيقية */
+    /* النغمات الموسيقية المتطايرة عند التشغيل */
     .music-note {
       position: absolute;
-      font-size: 20px;
+      font-size: 22px;
       opacity: 0;
       pointer-events: none;
       z-index: 10;
     }
-    .vinyl-container.playing .note-1 { animation: floatNote1 1.8s infinite ease-out; }
-    .vinyl-container.playing .note-2 { animation: floatNote2 2.1s infinite ease-out 0.4s; }
-    .vinyl-container.playing .note-3 { animation: floatNote3 1.9s infinite ease-out 0.8s; }
+
+    .vinyl-container.playing .note-1 {
+      animation: floatNote1 1.8s infinite ease-out;
+    }
+    .vinyl-container.playing .note-2 {
+      animation: floatNote2 2.1s infinite ease-out 0.4s;
+    }
+    .vinyl-container.playing .note-3 {
+      animation: floatNote3 1.9s infinite ease-out 0.8s;
+    }
 
     @keyframes floatNote1 {
-      0% { top: 30%; left: 45%; opacity: 0; transform: scale(0.5); }
+      0% { top: 30%; left: 45%; opacity: 0; transform: scale(0.5) rotate(0deg); }
       50% { opacity: 1; }
-      100% { top: -30px; left: 15%; opacity: 0; transform: scale(1.2) rotate(-20deg); }
+      100% { top: -35px; left: 15%; opacity: 0; transform: scale(1.3) rotate(-25deg); }
     }
     @keyframes floatNote2 {
-      0% { top: 30%; left: 45%; opacity: 0; transform: scale(0.5); }
+      0% { top: 30%; left: 45%; opacity: 0; transform: scale(0.5) rotate(0deg); }
       50% { opacity: 1; }
-      100% { top: -40px; left: 75%; opacity: 0; transform: scale(1.3) rotate(20deg); }
+      100% { top: -45px; left: 75%; opacity: 0; transform: scale(1.4) rotate(25deg); }
     }
     @keyframes floatNote3 {
-      0% { top: 30%; left: 45%; opacity: 0; transform: scale(0.5); }
+      0% { top: 30%; left: 45%; opacity: 0; transform: scale(0.5) rotate(0deg); }
       50% { opacity: 1; }
-      100% { top: -45px; left: 45%; opacity: 0; transform: scale(1.4); }
+      100% { top: -50px; left: 45%; opacity: 0; transform: scale(1.5) rotate(-10deg); }
     }
 
     /* مشغل الراب الخاص بصفاء */
     .rap-player-box {
       background: linear-gradient(135deg, #1b4332 0%, #081c15 100%);
       border: 2px solid #52b788;
-      border-radius: 16px;
-      padding: 10px 12px;
+      border-radius: 18px;
+      padding: 12px 15px;
+      margin-bottom: 15px;
       color: white;
-      text-align: center;
+      text-align: right;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
       display: none;
-      width: 100%;
-      margin-top: 5px;
+    }
+    .rap-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
     }
     .rap-title {
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 800;
       color: #74c69d;
-      margin-bottom: 6px;
-      display: block;
     }
     .rap-btn {
       background: #52b788;
       color: #081c15;
       border: none;
-      padding: 7px 14px;
-      border-radius: 20px;
+      padding: 8px 16px;
+      border-radius: 25px;
       font-weight: 900;
-      font-size: 12px;
+      font-size: 13px;
       cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
       width: 100%;
+      justify-content: center;
       transition: all 0.2s ease;
     }
     .rap-btn:hover { background: #74c69d; }
@@ -459,31 +436,28 @@
   <div class="forest-corner top-right">🌳</div>
 
   <div class="main-container">
-    <div class="top-bar">
-      <div class="clan-header">
-        <h1 class="clan-title">COOL MINT 🍃</h1>
-        <div class="clan-subtitle">كلان النعناع الرسمّي</div>
-      </div>
-
-      <div class="controls-group">
-        <button class="action-btn video-btn" onclick="openVideoModal()">
-          🎬 نشيد الكلان
-        </button>
-        <button class="action-btn" onclick="toggleMembers()">
-          🔍 أعضاء كلان النعناع
-        </button>
-      </div>
+    <div class="clan-header">
+      <h1 class="clan-title">COOL MINT 🍃</h1>
+      <div class="clan-subtitle">كلان النعناع</div>
     </div>
+
+    <button class="action-btn video-btn" onclick="openVideoModal()">
+      🎬 نشيد الكلان
+    </button>
+
+    <button class="action-btn" onclick="toggleMembers()">
+      🔍 اضغط للتعرف على أعضاء كلان النعناع
+    </button>
 
     <div class="members-grid" id="membersGrid"></div>
   </div>
 
   <div class="modal-overlay" id="videoModal">
-    <div class="modal-card" style="padding: 22px; max-width: 600px;">
+    <div class="modal-card" style="padding: 22px;">
       <h3 style="margin: 0 0 10px 0; color: #081c15; font-weight: 900;">🍃 نشيد كلان النعناع ✨</h3>
       
       <video id="clanVideo" class="clan-video-player" controls>
-        <source src="YouCut_20260906_141036526 (1).mp4" type="video/mp4">
+        <source src="mint-video.mp4" type="video/mp4">
         متصفحك لا يدعم تشغيل الفيديو.
       </video>
 
@@ -497,63 +471,59 @@
         <img src="" alt="Banner" class="profile-banner-img" id="mBanner">
       </div>
 
-      <div class="modal-body-layout">
-        <div class="profile-left-col">
-          <div class="profile-img-container">
-            <img src="" alt="Avatar" class="profile-img" id="mImg">
-            <div class="leader-badge" id="mBadge">👑 Leader</div>
+      <div class="modal-body-content">
+        <div class="profile-img-container">
+          <img src="" alt="Avatar" class="profile-img" id="mImg">
+          <div class="leader-badge" id="mBadge">👑 Leader</div>
+        </div>
+
+        <h2 class="profile-name" id="mName">اسم العضو</h2>
+        <p style="font-size: 12px; color: #40916c; margin: 0; font-weight: 600;" id="mTitle">الوصف</p>
+
+        <div class="details-grid">
+          <div class="detail-box">
+            <span class="detail-label">البلد</span>
+            <span class="detail-value" id="mCountry">-</span>
           </div>
-
-          <h2 class="profile-name" id="mName">اسم العضو</h2>
-          <p style="font-size: 12px; color: #40916c; margin: 0 0 10px 0; font-weight: 600;" id="mTitle">الوصف</p>
-
-          <div class="rita-player-box" id="ritaPlayerBox">
-            <div class="vinyl-container" id="vinylContainer" onclick="toggleRitaSong()">
-              <img src="IMG_8175-removebg-preview.png" id="vinylImg" class="vinyl-record" alt="Vinyl Record">
-              <span class="music-note note-1">🎵</span>
-              <span class="music-note note-2">🎶</span>
-              <span class="music-note note-3">🎼</span>
-            </div>
-            <div class="song-title-text">Shining Star</div>
+          <div class="detail-box">
+            <span class="detail-label">النمط</span>
+            <span class="detail-value" id="mMbti">-</span>
           </div>
+          <div class="detail-box">
+            <span class="detail-label">الرتبة في الكلان</span>
+            <span class="detail-value" id="mRole">-</span>
+          </div>
+          <div class="detail-box">
+            <span class="detail-label">الموهبة / الاهتمام</span>
+            <span class="detail-value" style="color: #2d6a4f;" id="mHobby">-</span>
+          </div>
+        </div>
 
-          <div class="rap-player-box" id="rapPlayerBox">
+        <div class="dislikes-box">
+          <div class="dislikes-title">🚫 أشياء تكرهها:</div>
+          <p class="dislikes-text" id="mDislikes">-</p>
+        </div>
+
+        <div class="rita-player-box" id="ritaPlayerBox">
+          <div class="vinyl-container" id="vinylContainer" onclick="toggleRitaSong()">
+            <img src="IMG_8175-removebg-preview.png" id="vinylImg" class="vinyl-record" alt="Vinyl Record">
+            <span class="music-note note-1">🎵</span>
+            <span class="music-note note-2">🎶</span>
+            <span class="music-note note-3">🎼</span>
+          </div>
+          <div class="song-title-text">Shining Star</div>
+        </div>
+
+        <div class="rap-player-box" id="rapPlayerBox">
+          <div class="rap-header">
             <span class="rap-title">🎤 Minty Bars (راب صفاء) 🔥</span>
-            <button class="rap-btn" id="rapBtn" onclick="toggleRap()">
-              ▶️ اسمعي بارات القائدة
-            </button>
           </div>
+          <button class="rap-btn" id="rapBtn" onclick="toggleRap()">
+            ▶️ اسمعي بارات القائدة
+          </button>
         </div>
 
-        <div class="profile-right-col">
-          <div>
-            <div class="details-grid">
-              <div class="detail-box">
-                <span class="detail-label">البلد</span>
-                <span class="detail-value" id="mCountry">-</span>
-              </div>
-              <div class="detail-box">
-                <span class="detail-label">النمط</span>
-                <span class="detail-value" id="mMbti">-</span>
-              </div>
-              <div class="detail-box">
-                <span class="detail-label">الرتبة في الكلان</span>
-                <span class="detail-value" id="mRole">-</span>
-              </div>
-              <div class="detail-box">
-                <span class="detail-label">الموهبة / الاهتمام</span>
-                <span class="detail-value" style="color: #2d6a4f;" id="mHobby">-</span>
-              </div>
-            </div>
-
-            <div class="dislikes-box">
-              <div class="dislikes-title">🚫 أشياء تكرهها:</div>
-              <p class="dislikes-text" id="mDislikes">-</p>
-            </div>
-          </div>
-
-          <button class="close-btn" onclick="closeProfile()">إغلاق الملف</button>
-        </div>
+        <button class="close-btn" onclick="closeProfile()">إغلاق الملف</button>
       </div>
     </div>
   </div>
@@ -665,7 +635,7 @@
         mbti: 'INTJ',
         role: 'عضوة بالكلان',
         badge: '🌿 Member',
-        hobby: 'ركوب الخيل 🐴',
+        hobby: 'ركوب الخيل (تحب اللي يفهمها علطول) 🐴',
         dislikes: 'اللي يحشون علي من وراي.',
         image: 'rival.jpg',
         banner: '',
@@ -713,7 +683,7 @@
               <img src="${m.image}" alt="${m.name}" class="preview-avatar" onerror="this.src='character.jpg'">
               <div style="text-align: right;">
                 <div class="preview-name">${m.name}</div>
-                <div class="preview-role">${m.badge}</div>
+                <div class="preview-role">${m.badge} - ${m.role}</div>
               </div>
             </div>
             <span style="color: #2d6a4f; font-weight: bold; font-size: 18px;">←</span>
